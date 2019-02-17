@@ -1,14 +1,22 @@
 /* variáveis do sass */
 $cor-padrao: #c24e4b;
 $cor-auxiliar: #1e2c35;
-$cor-branca: #fff; 
+$cor-branca: #fff;
 
-
-@mixin borda-arrendondada {
-  -webkit-border-radius: 1em;
-  border-radius: 1em;
+// mixin para facilitar o código
+@mixin borda-arrendondada ($raio: 0.3em) {
+  -webkit-border-radius: $raio;
+  border-radius: $raio ;
 }
 
+@mixin sombra-padrao {
+  box-shadow: 0 2px 6.65px 0.35px rgba(0, 0, 0, 0.3);
+}
+@mixin image-replacement {
+text-indent: -9999px;
+overflow: hidden;
+background-repeat: no-repeat;
+}
 
 /** Geral **/
 body {
@@ -56,24 +64,22 @@ header .container {
   top: -.5em;
   font-size: 1.2em;
   font-weight: lighter;
-}
 
-.menu-opcoes ul {
-  padding-left: 0;
-}
-
-.menu-opcoes li {
-  display: inline-block;
-  width: 5em;
-}
-
-.menu-opcoes a {
-  color: white;
-  text-decoration: none;
-}
-
-.menu-opcoes a:hover {
-  text-decoration: underline;
+//aninhamento de classes colocar filhos dentro dos pais
+  ul {
+    padding-left: 0;
+  }
+  li {
+    display: inline-block;
+    width: 5em;
+  }
+  a {
+    color: white;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }  
+  }
 }
 
 /** Destaque **/
@@ -107,8 +113,8 @@ header .container {
   border: 0;
   padding: .6em;
   font-size: 1.2em;
-  @include borda-arrendondada();
-  box-shadow: 0 2px 6.65px 0.35px rgba(0, 0, 0, 0.3);
+  @include borda-arrendondada(50px);
+  @include sombra-padrao();
   font-weight: bold;
 }
 
@@ -145,9 +151,7 @@ header .container {
   display: inline-block;
   width: 50px;
   height: 60px;
-  text-indent: -9999px;
-  overflow: hidden;
-  background-repeat: no-repeat;
+  @include image-replacement();
   background-position: center;
   margin: 1em 1.5em 0 0;
 }
@@ -233,8 +237,8 @@ header .container {
   height: 38px;
   font-size: 1.2em;
   //include do mixin para borda arrendondada
-  @include borda-arrendondada();
-  box-shadow: 0 2px 6.65px 0.35px rgba(0, 0, 0, 0.3);
+  @include borda-arrendondada;
+  @include sombra-padrao();
   margin-left: 2em;
 }
 
@@ -317,7 +321,7 @@ textarea {
   width: 100%;
   margin-bottom: .8em;
   padding: 4px 8px;
-  @include borda-arrendondada();
+  @include borda-arrendondada;
   border: 2px solid #ccc;
 }
 
@@ -329,8 +333,8 @@ textarea {
   width: 210px;
   height: 38px;
   font-size: 1.2em;
-  @include borda-arrendondada();
-  box-shadow: 0 2px 6.65px 0.35px rgba(0, 0, 0, 0.3);
+  @include borda-arrendondada;
+  @include sombra-padrao();
 }
 
 /** Footer **/
@@ -410,9 +414,7 @@ footer a {
   display: block;
   width: 55px;
   height: 55px;
-  text-indent: -9999px;
-  overflow: hidden;
-  background-repeat: no-repeat;
+  @include image-replacement();
   margin-left: 1em;
 }
 
